@@ -73,13 +73,13 @@ public class Horaire {
         this.afternoonTwo = afternoonTwo;
     }
 
-    public static void main(String[] args) {
-        Sport sport = new Sport("Basket");
-        MorningOne morningOne = new MorningOne(sport);
-        Horaire horaire = new Horaire();
-        horaire.setMorningOne(morningOne);
-        System.out.println(horaire.getHoraire());
-    }
+//    public static void main(String[] args) {
+//        Sport sport = new Sport("Basket");
+//        MorningOne morningOne = new MorningOne(sport);
+//        Horaire horaire = new Horaire();
+//        horaire.setMorningOne(morningOne);
+//        System.out.println(horaire.getHoraire());
+//    }
 
 
 }

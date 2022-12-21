@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class scanner {
     static Scanner scan = new Scanner(System.in);
 
-    public static int readNum() {
+    public int readNum() {
         String str = scan.nextLine();
         return Integer.parseInt(str);
     }
 
-    public static String readString() {
+    public String readString() {
         return scan.nextLine();
     }
 

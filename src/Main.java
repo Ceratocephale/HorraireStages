@@ -1,5 +1,8 @@
+import Controller.ControllerHoraire;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        ControllerHoraire ct = new ControllerHoraire();
+        ct.start();
     }
 }
