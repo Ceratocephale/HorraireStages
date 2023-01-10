@@ -1,7 +1,6 @@
 package Horaire.Day;
 
 import Horaire.Activites.Repas;
-import Horaire.Activites.Sport;
 import Horaire.Ancetres.TimeSection;
 
 import java.time.LocalTime;

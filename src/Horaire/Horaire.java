@@ -4,13 +4,28 @@ import Horaire.Activites.Repas;
 import Horaire.Activites.Sport;
 import Horaire.Day.*;
 
+import java.time.LocalDate;
+
 public class Horaire {
+    private LocalDate date;
     private MorningOne morningOne = new MorningOne(new Sport(""));
     private MorningTwo morningTwo = new MorningTwo(new Sport(""));
     private Lunch lunch = new Lunch(new Repas(""));
     private AfternoonOne afternoonOne = new AfternoonOne(new Sport(""));
     private AfternoonTwo afternoonTwo = new AfternoonTwo(new Sport(""));
     private RepasSoir repasSoir = new RepasSoir(new Repas(""));
+
+    public Horaire(int year, int month, int day){
+        this.date = LocalDate.of(year, month, day);
+    }
+
+    public RepasSoir getRepasSoir() {
+        return repasSoir;
+    }
+
+    public void setRepasSoir(RepasSoir repasSoir) {
+        this.repasSoir = repasSoir;
+    }
 
     public String getHoraire() {
         String str = String.format("""

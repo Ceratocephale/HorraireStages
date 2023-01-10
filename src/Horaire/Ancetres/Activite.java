@@ -8,14 +8,13 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Activite {
-    private LocalDate date;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
     private LocalDateTime heure;
     private String name;
     private SortedSet<Personne> personnes = new TreeSet();
 
-    public LocalDate getDate() {
-        return this.date;
-    }
+
 
     public LocalDateTime getTime() {
         return this.heure;
@@ -25,14 +24,27 @@ public class Activite {
         this.heure = heure;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+
 
     public SortedSet<Personne> getList() {
         return this.personnes;
     }
 
+    public LocalDate getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public LocalDate getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
+    }
 
     public String getName() {
         return name;
