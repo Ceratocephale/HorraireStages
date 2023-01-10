@@ -45,5 +45,8 @@ public class TimeSection{
     public TimeSection(Repas repas) {
         this.activite = repas;
     }
+    public TimeSection(Activite activite){
+        this.activite = activite;
+    }
 
 }

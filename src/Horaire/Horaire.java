@@ -1,23 +1,18 @@
 package Horaire;
 
-import Horaire.Activites.Repas;
-import Horaire.Activites.Sport;
+import Horaire.Ancetres.Activite;
 import Horaire.Day.*;
 
 import java.time.LocalDate;
 
 public class Horaire {
     private LocalDate date;
-    private MorningOne morningOne = new MorningOne(new Sport(""));
-    private MorningTwo morningTwo = new MorningTwo(new Sport(""));
-    private Lunch lunch = new Lunch(new Repas(""));
-    private AfternoonOne afternoonOne = new AfternoonOne(new Sport(""));
-    private AfternoonTwo afternoonTwo = new AfternoonTwo(new Sport(""));
-    private RepasSoir repasSoir = new RepasSoir(new Repas(""));
-
-    public Horaire(int year, int month, int day){
-        this.date = LocalDate.of(year, month, day);
-    }
+    private MorningOne morningOne = new MorningOne(new Activite(""));
+    private MorningTwo morningTwo = new MorningTwo(new Activite(""));
+    private Lunch lunch = new Lunch(new Activite(""));
+    private AfternoonOne afternoonOne = new AfternoonOne(new Activite(""));
+    private AfternoonTwo afternoonTwo = new AfternoonTwo(new Activite(""));
+    private RepasSoir repasSoir = new RepasSoir(new Activite(""));
 
     public RepasSoir getRepasSoir() {
         return repasSoir;
@@ -29,22 +24,24 @@ public class Horaire {
 
     public String getHoraire() {
         String str = String.format("""
-                        Horaire d'ajd:
-                        Debut | Activite | Fin  
-                                            
-                        %tR | %7s  | %tR 
-                        %tR | %7s  | %tR  
-                        %tR | %7s  | %tR 
-                        %tR | %7s  | %tR  
-                        %tR | %7s  | %tR 
-                        %tR | %7s  | %tR 
-                                                
-                        """, morningOne.getBegin(), morningOne.getActivite().getName(), morningOne.getEnd(),
-                morningTwo.getBegin(), morningTwo.getActivite().getName(), morningTwo.getEnd(),
-                lunch.getBegin(), lunch.getActivite().getName(), lunch.getEnd(),
-                afternoonOne.getBegin(), afternoonOne.getActivite().getName(), afternoonOne.getEnd(),
-                afternoonTwo.getBegin(), afternoonTwo.getActivite().getName(), afternoonTwo.getEnd(),
-                repasSoir.getBegin(), repasSoir.getActivite().getName(), repasSoir.getEnd());
+                        +--------------+
+                        |Horaire d'ajd:|
+                        +--------------+-----------+
+                        |L'heure       |  Activite | 
+                        +--------------+-----------+                    
+                        |%tR - %tR |  %7s   
+                        |%tR - %tR |  %7s  
+                        |%tR - %tR |  %7s  
+                        |%tR - %tR |  %7s  
+                        |%tR - %tR |  %7s 
+                        |%tR - %tR |  %7s 
+                        +--------------+-----------+                        
+                        """,morningOne.getBegin(), morningOne.getEnd(), morningOne.getActivite().getName(),
+                            morningTwo.getBegin(), morningTwo.getEnd(),morningTwo.getActivite().getName(),
+                            lunch.getBegin(),lunch.getEnd(), lunch.getActivite().getName(),
+                            afternoonOne.getBegin(), afternoonOne.getEnd(), afternoonOne.getActivite().getName(),
+                            afternoonTwo.getBegin(), afternoonTwo.getEnd(), afternoonTwo.getActivite().getName(),
+                            repasSoir.getBegin(), repasSoir.getEnd(), repasSoir.getActivite().getName());
         return str;
     }
 

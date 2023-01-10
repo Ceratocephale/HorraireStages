@@ -1,20 +1,27 @@
 package Controller;
 
-import Horaire.Activites.Repas;
-import Horaire.Activites.Sport;
-import Horaire.Day.*;
 import Horaire.Horaire;
 
 public class ControllerHoraire {
 
-    static Horaire h;
+    private Horaire h;
+
+    public Horaire getH() {
+        return h;
+    }
+
+    public void setH(Horaire h) {
+        this.h = h;
+    }
+
     static scanner sc = new scanner();
+
 
     public void start() {
         boolean exit = false;
 
         while (!exit) {
-            System.out.println(h.getHoraire());
+            System.out.println(getH().getHoraire());
 
             System.out.println("""
                     Choisissez les modifications:
@@ -25,7 +32,7 @@ public class ControllerHoraire {
                     5. Quitter.
                     """);
             switch (sc.readNum()) {
-                case 1,3 -> rajouterActivite();
+                case 1, 3 -> modifierActivite();
                 case 2 -> supprimerActivite();
                 case 4 -> supprimerTout();
                 case 5 -> exit = true;
@@ -35,58 +42,88 @@ public class ControllerHoraire {
         }
     }
 
-    static void rajouterActivite(){
+//    static void rajouterActivite(){
+//        System.out.println(tranchesHoraire());
+//        int reponse = sc.readNum();
+//        String str = propositionInput();
+//        switch (reponse) {
+//            case 1:
+//                h.setMorningOne(new MorningOne(new Sport(str)));
+//                break;
+//            case 2:
+//                h.setMorningTwo(new MorningTwo(new Sport(str)));
+//                break;
+//            case 3:
+//                h.setLunch(new Lunch(new Repas(str)));
+//                break;
+//            case 4:
+//                h.setAfternoonOne(new AfternoonOne(new Sport(str)));
+//                break;
+//            case 5:
+//                h.setAfternoonTwo(new AfternoonTwo(new Sport(str)));
+//                break;
+//            case 6:
+//                h.setRepasSoir(new RepasSoir(new Repas(str)));
+//                break;
+//            case 7:
+//            default:
+//                System.out.println("Mauvais input");
+//
+//        }
+//
+//    }
+
+    void modifierActivite() {
         System.out.println(tranchesHoraire());
         int reponse = sc.readNum();
         String str = propositionInput();
         switch (reponse) {
             case 1:
-                h.setMorningOne(new MorningOne(new Sport(str)));
+                getH().getMorningOne().getActivite().setName(str);
                 break;
             case 2:
-                h.setMorningTwo(new MorningTwo(new Sport(str)));
+                getH().getMorningTwo().getActivite().setName(str);
                 break;
             case 3:
-                h.setLunch(new Lunch(new Repas(str)));
+                getH().getLunch().getActivite().setName(str);
                 break;
             case 4:
-                h.setAfternoonOne(new AfternoonOne(new Sport(str)));
+                getH().getAfternoonOne().getActivite().setName(str);
                 break;
             case 5:
-                h.setAfternoonTwo(new AfternoonTwo(new Sport(str)));
+                getH().getAfternoonTwo().getActivite().setName(str);
                 break;
             case 6:
-                h.setRepasSoir(new RepasSoir(new Repas(str)));
+                getH().getRepasSoir().getActivite().setName(str);
                 break;
             case 7:
             default:
                 System.out.println("Mauvais input");
 
         }
-
     }
 
-    static void supprimerActivite(){
+    void supprimerActivite() {
         System.out.println(tranchesHoraire());
         int reponse = sc.readNum();
         switch (reponse) {
             case 1:
-                h.setMorningOne(new MorningOne(new Sport("")));
+                getH().getMorningOne().getActivite().setName("");
                 break;
             case 2:
-                h.setMorningTwo(new MorningTwo(new Sport("")));
+                getH().getMorningTwo().getActivite().setName("");
                 break;
             case 3:
-                h.setLunch(new Lunch(new Repas("")));
+                getH().getLunch().getActivite().setName("");
                 break;
             case 4:
-                h.setAfternoonOne(new AfternoonOne(new Sport("")));
+                getH().getAfternoonOne().getActivite().setName("");
                 break;
             case 5:
-                h.setAfternoonTwo(new AfternoonTwo(new Sport("")));
+                getH().getAfternoonTwo().getActivite().setName("");
                 break;
             case 6:
-                h.setRepasSoir(new RepasSoir(new Repas("")));
+                getH().getRepasSoir().getActivite().setName("");
                 break;
             case 7:
             default:
@@ -95,17 +132,18 @@ public class ControllerHoraire {
         }
     }
 
-    static void supprimerTout(){
-        h.setMorningOne(new MorningOne(new Sport("")));
-        h.setMorningTwo(new MorningTwo(new Sport("")));
-        h.setLunch(new Lunch(new Repas("")));
-        h.setAfternoonOne(new AfternoonOne(new Sport("")));
-        h.setAfternoonTwo(new AfternoonTwo(new Sport("")));
-        h.setRepasSoir(new RepasSoir(new Repas("")));
+    void supprimerTout() {
+        getH().getMorningOne().getActivite().setName("");
+        getH().getMorningTwo().getActivite().setName("");
+        getH().getLunch().getActivite().setName("");
+        getH().getAfternoonOne().getActivite().setName("");
+        getH().getAfternoonTwo().getActivite().setName("");
+        getH().getRepasSoir().getActivite().setName("");
+
     }
 
-    static String tranchesHoraire(){
-       return """
+    static String tranchesHoraire() {
+        return """
                 Dans quelle tranche horaire?
                 1.08h-10h
                 2.10h-12h
@@ -117,20 +155,21 @@ public class ControllerHoraire {
 
     }
 
-    static String propositionInput(){
+    static String propositionInput() {
         System.out.println("Indiquez le nom de l'activité");
         String str = sc.readString();
         return str;
     }
-    static String typesActivites(){
+
+    static String typesActivites() {
         return """
                 1.Activite sportive
                 2.Repas/Lunch
                 """;
     }
 
-    public ControllerHoraire(int year, int month, int day){
-        this.h = new Horaire(year, month, day);
+    public ControllerHoraire(Horaire h) {
+        this.h = h;
     }
 
 }
