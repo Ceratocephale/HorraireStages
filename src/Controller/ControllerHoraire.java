@@ -1,5 +1,8 @@
 package Controller;
 
+import Horaire.Activites.Repas;
+import Horaire.Activites.Sport;
+import Horaire.Day.*;
 import Horaire.Horaire;
 
 public class ControllerHoraire {
@@ -22,9 +25,8 @@ public class ControllerHoraire {
                     5. Quitter.
                     """);
             switch (sc.readNum()) {
-                case 1 -> rajouterActivite();
+                case 1,3 -> rajouterActivite();
                 case 2 -> supprimerActivite();
-                case 3 -> modifierActivite();
                 case 4 -> supprimerTout();
                 case 5 -> exit = true;
                 default -> System.out.println("Frere tes con ou koi");
@@ -35,41 +37,90 @@ public class ControllerHoraire {
 
     static void rajouterActivite(){
         System.out.println(tranchesHoraire());
-
-        switch (sc.readNum()) {
-            case 1 -> mor
+        int reponse = sc.readNum();
+        String str = propositionInput();
+        switch (reponse) {
+            case 1:
+                h.setMorningOne(new MorningOne(new Sport(str)));
+                break;
             case 2:
+                h.setMorningTwo(new MorningTwo(new Sport(str)));
+                break;
             case 3:
+                h.setLunch(new Lunch(new Repas(str)));
+                break;
             case 4:
+                h.setAfternoonOne(new AfternoonOne(new Sport(str)));
+                break;
             case 5:
+                h.setAfternoonTwo(new AfternoonTwo(new Sport(str)));
+                break;
             case 6:
+                h.setRepasSoir(new RepasSoir(new Repas(str)));
+                break;
             case 7:
+            default:
+                System.out.println("Mauvais input");
+
         }
 
     }
-    static void modifierActivite(){
-        tranchesHoraire();
-    }
 
     static void supprimerActivite(){
-        tranchesHoraire();
+        System.out.println(tranchesHoraire());
+        int reponse = sc.readNum();
+        switch (reponse) {
+            case 1:
+                h.setMorningOne(new MorningOne(new Sport("")));
+                break;
+            case 2:
+                h.setMorningTwo(new MorningTwo(new Sport("")));
+                break;
+            case 3:
+                h.setLunch(new Lunch(new Repas("")));
+                break;
+            case 4:
+                h.setAfternoonOne(new AfternoonOne(new Sport("")));
+                break;
+            case 5:
+                h.setAfternoonTwo(new AfternoonTwo(new Sport("")));
+                break;
+            case 6:
+                h.setRepasSoir(new RepasSoir(new Repas("")));
+                break;
+            case 7:
+            default:
+                System.out.println("Mauvais input");
+
+        }
     }
 
     static void supprimerTout(){
-
+        h.setMorningOne(new MorningOne(new Sport("")));
+        h.setMorningTwo(new MorningTwo(new Sport("")));
+        h.setLunch(new Lunch(new Repas("")));
+        h.setAfternoonOne(new AfternoonOne(new Sport("")));
+        h.setAfternoonTwo(new AfternoonTwo(new Sport("")));
+        h.setRepasSoir(new RepasSoir(new Repas("")));
     }
 
     static String tranchesHoraire(){
        return """
                 Dans quelle tranche horaire?
                 1.08h-10h
-                2.
-                3.
-                4.
-                5.
-                6.
-                7.
+                2.10h-12h
+                3.12h-13h
+                4.13h-15h
+                5.15h-17h
+                6.18h-19h
                 """;
+
+    }
+
+    static String propositionInput(){
+        System.out.println("Indiquez le nom de l'activité");
+        String str = sc.readString();
+        return str;
     }
     static String typesActivites(){
         return """
@@ -77,6 +128,5 @@ public class ControllerHoraire {
                 2.Repas/Lunch
                 """;
     }
-
 
 }

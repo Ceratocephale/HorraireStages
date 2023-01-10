@@ -12,6 +12,14 @@ public class Horaire {
     private AfternoonTwo afternoonTwo = new AfternoonTwo(new Sport(""));
     private RepasSoir repasSoir = new RepasSoir(new Repas(""));
 
+    public RepasSoir getRepasSoir() {
+        return repasSoir;
+    }
+
+    public void setRepasSoir(RepasSoir repasSoir) {
+        this.repasSoir = repasSoir;
+    }
+
     public String getHoraire() {
         String str = String.format("""
                         Horaire d'ajd:
